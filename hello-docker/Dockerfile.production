@@ -1,0 +1,18 @@
+# First stage: Build the Rust project
+FROM rust:latest AS builder
+
+# Install musl-tools for static linking
+RUN rustup target add x86_64-unknown-linux-musl
+WORKDIR /usr/src/myapp
+COPY . .
+
+# Build the binary
+RUN cargo build --release --target x86_64-unknown-linux-musl
+
+# Second stage: Create a minimal image using scratch
+FROM scratch
+# Copy the statically linked binary from the builder stage
+COPY --from=builder /usr/src/myapp/target/x86_64-unknown-linux-musl/release/hello-docker /hello-docker
+
+# Run the binary
+CMD ["/hello-docker"]
