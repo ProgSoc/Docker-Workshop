@@ -4,5 +4,6 @@
     "ghcr.io/devcontainers/features/docker-in-docker:2": {},
     "ghcr.io/devcontainers/features/github-cli:1": {},
     "ghcr.io/devcontainers-extra/features/fish-apt-get:1": {}
-  }
+  },
+  "forwardPorts": [2019]  // Forward the host port you’ll use for Caddy
 }
