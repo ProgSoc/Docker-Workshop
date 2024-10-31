@@ -24,9 +24,9 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v6
         with:
           context: "./solutions/hello-docker"
           file: "./solutions/hello-docker/Dockerfile.production"
           push: true
-          tags: user/app:latest
+          tags: ghcr.io/${{ steps.meta.outputs.tags }}/hello-docker:latest
