@@ -26,6 +26,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         with:
-          context: "{{defaultContext}}:solutions/hello-docker"
+          context: "./solutions/hello-docker"
+          file: "./solutions/hello-docker/Dockerfile.production"
           push: true
           tags: ghcr.io/progsoc/hello-docker:latest
