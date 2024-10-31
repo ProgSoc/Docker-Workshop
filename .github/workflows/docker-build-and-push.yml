@@ -29,4 +29,4 @@ jobs:
           context: "./solutions/hello-docker"
           file: "./solutions/hello-docker/Dockerfile.production"
           push: true
-          tags: ghcr.io/${{ steps.meta.outputs.tags }}/hello-docker:latest
+          tags: ${{ steps.meta.outputs.tags }}
