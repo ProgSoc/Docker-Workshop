@@ -1,0 +1,8 @@
+services:
+  web:
+    image: caddy:latest
+    ports:
+      - "2019:80"           # Map port 8080 on the host to port 80 in the container
+    volumes:
+      - ./index.html:/usr/share/caddy/index.html  # Mount your single index.html file
+    restart: always         # Optional: automatically restart the service if it stops
