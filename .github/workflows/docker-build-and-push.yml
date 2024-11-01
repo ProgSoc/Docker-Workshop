@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - adv-docker-example
+      - main
 
 jobs:
   build:
