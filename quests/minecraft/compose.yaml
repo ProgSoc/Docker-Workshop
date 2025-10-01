@@ -2,15 +2,15 @@
 # This file defines how to run the Minecraft server container
 
 services:  # List of services (containers) to run
-  mc:  # Name of the service - you can reference it with 'docker compose logs mc'
-    image: itzg/minecraft-server  # The Docker image to use from Docker Hub
-    tty: true  # Allocate a pseudo-TTY (allows interactive terminal)
-    stdin_open: true  # Keep STDIN open (allows you to type server commands)
-    ports:  # Maps ports from host machine to container
+  mc:
+    image: itzg/minecraft-server
+    tty: true
+    stdin_open: true
+    ports:
       - "25565:25566"  # Format: "host_port:container_port"
     environment:  # Environment variables passed to the container
-      EULA: "FALSE"  # Must be TRUE to accept Minecraft EULA
-      TYPE: "VANILLA"  # The type of Minecraft server (VANILLA, PAPER, FORGE, etc.)
+      EULA: "FALSE"
+      TYPE: "VANILLA"
     volumes:  # Mount directories from host to container to persist data
       - ./data:/data  # Stores world data, plugins, configs in ./data folder
 

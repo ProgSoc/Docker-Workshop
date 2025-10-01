@@ -23,17 +23,32 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Docker meta
-        id: meta
+      - name: Docker meta - Demo
+        id: meta-demo
         uses: docker/metadata-action@v4
         with:
-          images: ghcr.io/${{ github.repository }}
+          images: ghcr.io/${{ github.repository }}/demo
           tags: latest
 
-      - name: Build and push Docker image
+      - name: Build and push Demo Docker image
         uses: docker/build-push-action@v6
         with:
           context: "./demo"
           file: "./demo/Dockerfile.production"
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.meta-demo.outputs.tags }}
+
+      - name: Docker meta - K-pop Demon Server
+        id: meta-kpop
+        uses: docker/metadata-action@v4
+        with:
+          images: ghcr.io/${{ github.repository }}/kpop-web-server
+          tags: latest
+
+      - name: Build and push K-pop Web Server Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: "./quests/solutions/kpop-web-server"
+          file: "./quests/solutions/kpop-web-server/Dockerfile"
+          push: true
+          tags: ${{ steps.meta-kpop.outputs.tags }}
