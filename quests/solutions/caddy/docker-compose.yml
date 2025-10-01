@@ -1,0 +1,7 @@
+services:
+  web:
+    image: caddy:latest
+    ports:
+      - "2019:80"
+    volumes:
+      - ./index.html:/usr/share/caddy/index.html
